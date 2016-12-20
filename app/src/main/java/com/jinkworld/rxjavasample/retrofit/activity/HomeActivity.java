@@ -18,6 +18,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Subscriber;
+import rx.functions.Action1;
+import rx.functions.Action2;
 
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";

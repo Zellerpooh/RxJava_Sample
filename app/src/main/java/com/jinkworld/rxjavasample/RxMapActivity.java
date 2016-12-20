@@ -7,6 +7,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jinkworld.rxjavasample.conversion.Student;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -29,7 +34,9 @@ public class RxMapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_map);
         ButterKnife.bind(this);
+
     }
+
 
     @OnClick(R.id.button)
     public void onClick() {
