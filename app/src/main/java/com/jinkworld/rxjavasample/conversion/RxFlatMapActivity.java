@@ -9,16 +9,19 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.jinkworld.rxjavasample.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Action1;
 import rx.functions.Func1;
 
 public class RxFlatMapActivity extends AppCompatActivity {
@@ -46,6 +49,12 @@ public class RxFlatMapActivity extends AppCompatActivity {
             Student student = new Student("student" + i, courses);
             students[i] = student;
         }
+        RxView.clicks(flatMap).throttleFirst(1000, TimeUnit.MICROSECONDS).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                actionFlatmap();
+            }
+        });
     }
 
     private List<Student.Course> courses;
@@ -58,9 +67,7 @@ public class RxFlatMapActivity extends AppCompatActivity {
             case R.id.btn_start:
                 actionMap();
                 break;
-            case R.id.flat_map:
-                actionFlatmap();
-                break;
+
         }
     }
 
@@ -119,7 +126,7 @@ public class RxFlatMapActivity extends AppCompatActivity {
         Subscriber<Student.Course> subscriber = new Subscriber<Student.Course>() {
             @Override
             public void onCompleted() {
-
+                Log.d(TAG, "onCompleted");
             }
 
             @Override
